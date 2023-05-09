@@ -74,19 +74,19 @@ function getData(options) {
                     JPname = _data.split(":")[1];
                 } else if (_data.includes("English")) {
                     ENname = _data.split(":")[1];
-                } else if (_data.includes("Episodes")) {
+                } else if (_data.includes("Episode")) {
                     episodes = parseInt(_data.split(":")[1]);
                 } else if (_data.includes("Aired")) {
                     aired = _data.split(":")[1];
-                } else if (_data.includes("Producers")) {
+                } else if (_data.includes("Producer")) {
                     $(elem).find('a').map(function(index, elem) {
                         producers.push($(elem).attr("title"));
                     });
-                } else if (_data.includes("Studios")) {
+                } else if (_data.includes("Studio")) {
                     $(elem).find('a').map(function(index, elem) {
                         studios.push($(elem).attr("title"));
                     });
-                } else if (_data.includes("Genres")) {
+                } else if (_data.includes("Genre")) {
                     $(elem).find('a').map(function(index, elem) {
                         genres.push($(elem).attr("title"));
                     });
@@ -106,7 +106,7 @@ function getData(options) {
             studios = [];
             genres = [];
 
-            fs.writeFileSync("data.json", JSON.stringify(data, null, '\t'));
+            fs.writeFileSync("./src/Constants/data.json", JSON.stringify(data, null, '\t'));
         }
     });
 }
@@ -114,3 +114,4 @@ function getData(options) {
 for (let limit = 0; limit < 7; limit++) {
     searchImages(limit * 50);
 }
+
