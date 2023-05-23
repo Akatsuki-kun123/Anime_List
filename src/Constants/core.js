@@ -123,15 +123,15 @@ function getData(options) {
                     episodes = parseInt(_data.split(":")[1]);
                 } else if (_data.includes("Aired")) {
                     aired = _data.split(":")[1];
-                } else if (_data.includes("Producers")) {
+                } else if (_data.includes("Producer")) {
                     $(elem).find('a').map(function(index, elem) {
                         producers.push($(elem).attr("title"));
                     });
-                } else if (_data.includes("Studios")) {
+                } else if (_data.includes("Studio")) {
                     $(elem).find('a').map(function(index, elem) {
                         studios.push($(elem).attr("title"));
                     });
-                } else if (_data.includes("Genres")) {
+                } else if (_data.includes("Genre")) {
                     $(elem).find('a').map(function(index, elem) {
                         genres.push($(elem).attr("title"));
                     });
