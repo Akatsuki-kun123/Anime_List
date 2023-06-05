@@ -1,8 +1,8 @@
 const {Sequelize, DataTypes} = require("sequelize");
 const sequelize = new Sequelize(
-    '${db_name}',
-    '${admin}',
-    '${password}',
+    '${db_name}', //Thay bằng tên database
+    '${admin}', //Tên đăng nhập
+    '${password}', //Mật khẩu
     {
         host: 'localhost',
         dialect: 'mssql',
