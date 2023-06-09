@@ -1,16 +1,8 @@
 const {Sequelize, DataTypes} = require("sequelize");
-const sequelize = new Sequelize(
-    '${db_name}', //Thay bằng tên database
-    '${admin}', //Tên đăng nhập
-    '${password}', //Mật khẩu
-    {
-        host: 'localhost',
-        dialect: 'mssql',
-        define: {
-            timestamps: false
-        }
-    }
-);
+const sequelize = new Sequelize('animelist', 'login', 'password', {
+    host: 'localhost',
+    dialect: 'mssql',
+});
 
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
