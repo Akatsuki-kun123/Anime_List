@@ -1,3 +1,4 @@
+const fs = require("fs");
 const {Sequelize, DataTypes} = require("sequelize");
 const sequelize = new Sequelize('anime_list', 'admin', 'Tb15092003!', {
     host: 'localhost',
@@ -226,34 +227,7 @@ const Anime_emotion = sequelize.define("anime_emotion", {
     }
 );
 
-let data = {
-    JPname: " はじめの一歩 Rising\n  ",
-    ENname: " Hajime No Ippo",
-    image: "https://cdn.myanimelist.net/images/anime/6/56147.jpg",
-    episodes: 25,
-    aired: "\n  Oct 6, 2013 to Mar 30, 2014\n  ",
-    producers: [
-        "VAP"
-    ],
-    studios: [
-        "Madhouse",
-        "MAPPA"
-    ],
-    genres: [
-        "Sports"
-    ],
-    description: "Japanese Featherweight Champion Makunouchi Ippo has defended his title belt once more with the help of his devastating signature move: the Dempsey Roll. However, new challengers are rising up left and right, claiming to have an answer for the move responsible for crushing his opponents. Will Ippo be able to step up to the challenge, or will the weight of his pride destroy him before he finds out just what it means to be strong? Meanwhile, fellow Kamogawa Gym mate Aoki Masaru is just a hop, skip, and a Frog Punch away from claiming his own belt, ready to take on the Japanese Lightweight Champion!\n\nHajime no Ippo: Rising continues Ippo's quest to become stronger, featuring the same cast of loveable dimwits from Kamogawa Gym, as they put their bodies and hearts on the line to make their way in the harsh world of professional boxing. With a will of iron, Ippo steps into the ring once again.\n\n[Written by MAL Rewrite]",
-    characters: [
-        {
-            name: "Makunouchi, Ippo",
-            image: "https://cdn.myanimelist.net/r/42x62/images/characters/11/32678.jpg?s=19a666c43dcc72009f671c26e82de682",
-            voiceActor: {
-                name: "Kiyasu, Kohei",
-                image: "https://cdn.myanimelist.net/r/42x62/images/voiceactors/3/12783.jpg?s=3971b1407095dc0bff03ef7b7a79d8b0"
-            }
-        }
-    ]
-}
+let data = JSON.parse(fs.readFileSync("data.json"));
 
 function convertDate(data) {
     let args = data.split(" ");
@@ -435,8 +409,9 @@ async function InsertAnime(data) {
 }
 
 sequelize.sync().then(() => {
-    InsertAnime(data);
-    
+    for (index in data) {
+        InsertAnime(data[index]);
+    } 
 }).catch((error) => {
     console.error('Unable to create table : ', error);
 });
