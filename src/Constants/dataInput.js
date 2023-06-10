@@ -1,5 +1,5 @@
 const {Sequelize, DataTypes} = require("sequelize");
-const sequelize = new Sequelize('animelist', 'login', 'password', {
+const sequelize = new Sequelize('anime_list', 'admin', 'Tb15092003!', {
     host: 'localhost',
     dialect: 'mssql',
 });
@@ -10,10 +10,11 @@ sequelize.authenticate().then(() => {
     console.error('Unable to connect to the database: ', error);
 });
 
-const Anime = sequelize.define("Anime", {
-    ID: {
+const Anime = sequelize.define("animes", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
@@ -27,7 +28,7 @@ const Anime = sequelize.define("Anime", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    producers_id: {
+    pid: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -40,167 +41,188 @@ const Anime = sequelize.define("Anime", {
         allowNull: false
     }},
     {
-        tableName: "Anime"
+        tableName: "animes",
+        timestamps: false
     }
 );
 
-const Genres = sequelize.define("Genres", {
-    ID: {
+const Genres = sequelize.define("genres", {
+    id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
     },
-    Gname: {
+    name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     }}, 
     {
-        tableName: "Genres"
+        tableName: "genres",
+        timestamps: false
     }
 );
 
-const Anime_genres = sequelize.define("Anime_genres", {
-    ID: {
+const Anime_genres = sequelize.define("anime_genre", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    GID: {
+    gid: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    AID: {
+    aid: {
         type: DataTypes.INTEGER,
         allowNull: false
     }},
     {
-        tableName: "Anime_genres"
+        tableName: "anime_genre",
+        timestamps: false
     }
 );
 
-const Studios = sequelize.define("Studios", {
-    ID: {
+const Studios = sequelize.define("studios", {
+    id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
     },
-    Sname: {
+    name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     }}, 
     {
-        tableName: "Studios"
+        tableName: "studios",
+        timestamps: false
     }
 );
 
-const Anime_studio = sequelize.define("Anime_studio", {
-    ID: {
+const Anime_studios = sequelize.define("anime_studio", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    StID: {
+    stid: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    AID: {
+    aid: {
         type: DataTypes.INTEGER,
         allowNull: false
     }},
     {
-        tableName: "Anime_studio"
+        tableName: "anime_studio",
+        timestamps: false
     }
 );
 
-const Producers = sequelize.define("Producers", {
-    ID: {
+const Producers = sequelize.define("producers", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     }, 
-    Pname: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     }},
     {
-        tableName: "Producers"
+        tableName: "producers",
+        timestamps: false
     }
 );
 
-const Characters = sequelize.define("Characters", {
-    ID: {
+const Characters = sequelize.define("characters", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     }, 
-    Chname: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    VaID: {
+    vaid: {
         type: DataTypes.INTEGER,
         allowNull: false
     }},
     {
-        tableName: "Characters"
+        tableName: "characters",
+        timestamps: false
     }    
 );
 
-const Anime_character = sequelize.define("Anime_character", {
-    ID: {
+const Anime_characters = sequelize.define("anime_character", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     }, 
-    Chname: {
-        type: DataTypes.STRING,
+    chid: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    VaID: {
+    aid: {
         type: DataTypes.INTEGER,
         allowNull: false
     }},
     {
-        tableName: "Anime_character"
+        tableName: "anime_character",
+        timestamps: false
     }    
 );
 
-const Voice_actors = sequelize.define("Voice_actors", {
-    ID: {
+const Voice_actors = sequelize.define("voice_actors", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     }, 
-    Vaname: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     }},
     {
-        tableName: "Voice_actors"
+        tableName: "voice_actors",
+        timestamps: false
     }    
 );
 
-const Emotions = sequelize.define("Emotions", {
-    ID: {
+const Emotions = sequelize.define("emotions", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    Ename: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     }},
     {
-        tableName: "Emotions"
+        tableName: "Emotions",
+        timestamps: false
     }    
 );
 
-const Anime_emotion = sequelize.define("Anime_emotion", {
-    ID: {
+const Anime_emotion = sequelize.define("anime_emotion", {
+    id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    AID: {
+    aid: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    EID: {
+    eid: {
         type: DataTypes.INTEGER,
         allowNull: false
     }},
     {
-        tableName: "Anime_emotion"
+        tableName: "Anime_emotion",
+        timestamps: false
     }
 );
 
@@ -210,7 +232,9 @@ let data = {
     image: "https://cdn.myanimelist.net/images/anime/6/56147.jpg",
     episodes: 25,
     aired: "\n  Oct 6, 2013 to Mar 30, 2014\n  ",
-    producers: "VAP",
+    producers: [
+        "VAP"
+    ],
     studios: [
         "Madhouse",
         "MAPPA"
@@ -231,119 +255,181 @@ let data = {
     ]
 }
 
-async function InsertElements(data) {
-    return new Promise((resolve, rejects) => {
-        let newChar = [],
-            newGenre = [],
-            newStudio = [],
-            newProducer;
+function convertDate(data) {
+    let args = data.split(" ");
+    let normalizedDate = "";
+    let counter = 0;
 
-        data.genres.map(async (index, elem) => {
-            if (await Genres.findOne({ where: { Gname: elem } }) === null) {
-                await Genres.create(
-                    {
-                        Gname: elem
-                    }
-                );
-            }
-
-            newGenre.push(await Genres.findOne({ where: { Gname: elem } }))
-        });
+    for (index in args) {
+        if (counter == 3) {
+            break;
+        }
     
-        data.studios.map(async (index, elem) => {
-            if (await Studios.findOne({ where: { Sname: elem } }) === null) {
-                await Studios.create(
-                    {
-                        Sname: elem
-                    }
-                );
+        if (args[index] === "Jan") {
+            normalizedDate += "January ";
+            counter += 1;
+        } else if (args[index] === "Feb") {
+            normalizedDate += "February ";
+            counter += 1;
+        } else if (args[index] === "Mar") {
+            normalizedDate += "March ";
+            counter += 1;
+        } else if (args[index] === "Apr") {
+            normalizedDate += "April ";
+            counter += 1;
+        } else if (args[index] === "May") {
+            normalizedDate += "May ";
+            counter += 1;
+        } else if (args[index] === "Jun") {
+            normalizedDate += "June ";
+            counter += 1;
+        } else if (args[index] === "Jul") {
+            normalizedDate += "July ";
+            counter += 1;
+        } else if (args[index] === "Aug") {
+            normalizedDate += "August ";
+            counter += 1;
+        } else if (args[index] === "Sep") {
+            normalizedDate += "September ";
+            counter += 1;
+        } else if (args[index] === "Oct") {
+            normalizedDate += "October ";
+            counter += 1;
+        } else if (args[index] === "Nov") {
+            normalizedDate += "November ";
+            counter += 1;
+        } else if (args[index] === "Dec") {
+            normalizedDate += "December ";
+            counter += 1;
+        } else {
+            if (counter == 0) {
+                continue;
             }
-
-            newStudio.push(await Studios.findOne({ where: { Sname: elem } }));
-        });
-    
-        data.producers.map(async (index, elem) => {
-            if (await Producers.findOne({ where: { Pname: elem } }) === null) {
-                await Producers.create(
-                    {
-                        Pname: elem
-                    }
-                );
-            }
-
-            newProducer = await Producers.findOne({ where: { Pname: elem } });
-        });
-    
-        data.characters.map(async (index, elem) => {
-            if (await Characters.findOne({ where: { Chname: elem.name } }) === null) {
-                if (await Voice_actors.findOne({ where: { Vaname: elem.voiceActor.name } }) === null) {
-                    var newVA = await Voice_actors.create(
-                        {
-                            Vaname: elem.voiceActor.name
-                        }
-                    );
+            else {
+                if (args[index] != " ") {
+                    normalizedDate = normalizedDate + args[index] + " ";
+                    counter += 1;
                 }
-    
-                let charVA = await Voice_actors.findOne({ where: { Vaname: newVA.Vaname } });
-                let charVAid = charVA.ID
-        
-                newChar = await Characters.create(
+            }
+        }
+    }
+
+    return(normalizedDate);
+}
+
+async function InsertElements(data) {
+    let newChars = [],
+        newGenres = [],
+        newStudios = [],
+        newProducer;
+
+    for (index in data.genres) {
+        let genre = await Genres.findOne({ where: { name: data.genres[index] } });
+        if (genre === null) {
+            genre = await Genres.create(
+                {
+                    name: data.genres[index]
+                }
+            );
+        }
+
+        newGenres.push(genre);
+    }
+
+    for (index in data.studios) {
+        let studio = await Studios.findOne({ where: { name: data.studios[index] } });
+        if (studio === null) {
+            studio = await Studios.create(
+                {
+                    name: data.studios[index]
+                }
+            );
+        }
+
+        newStudios.push(studio);
+    }
+
+    for (index in data.producers) {
+        let producer = await Producers.findOne({ where: { name: data.producers[index] } });
+        if (producer === null) {
+            producer = await Producers.create(
+                {
+                    name: data.producers[index]
+                }
+            );
+        }
+
+        newProducer = producer;
+    }
+
+    for (index in data.characters) {
+        let character = await Characters.findOne({ where: { name: data.characters[index].name } });
+        if (character === null) {
+            let newVA = await Voice_actors.findOne({ where: { name: data.characters[index].voiceActor.name } });
+            if (newVA === null) {
+                newVA = await Voice_actors.create(
                     {
-                        Chname: elem.name,
-                        VaID: charVAid
+                        name: data.characters[index].voiceActor.name
                     }
                 );
             }
+        
+            character = await Characters.create(
+                {
+                    name: data.characters[index].name,
+                    vaid: newVA.id
+                }
+            );
+        }
 
-            newChar.push(await Characters.findOne({ where: { Chname: elem.name } }));
-        });
+        newChars.push(character);
+    }
 
-        resolve({
-            newChar: newChar,
-            newGenre: newGenre,
-            newStudio: newStudio,
-            newProducer: newProducer
-        });
+    let result = {
+        newChars: newChars,
+        newGenres: newGenres,
+        newStudios: newStudios,
+        newProducer: newProducer
+    };
 
-        rejects("Error!");
-    });
+    return(result);
 }
 
 async function InsertAnime(data) {
-    let elems;
-    InsertElements.then(value => {
-        elems = value
-    });
+    let anime = await Anime.findOne({ where: { name: data.JPname } });
+    if (anime != null) {
+        return 0;
+    }
+
+    let elems = await InsertElements(data);
 
     let newAnime = await Anime.create({
         name: data.JPname,
         episodes: data.episodes,
-        aired: data.aired,
-        producers_id: elems.newProducer.ID,
+        aired: convertDate(data.aired),
+        pid: elems.newProducer.id,
         rating: 9,
         synopsis: data.description
     });
 
-    newAnime = await Anime.findOne({ where: { name: data.JPname } });
-
-    elems.newGenre.map((index, elem) => {
-        Anime_genres.create({
-            GID: elem.ID,
-            AID: newAnime.ID
+    elems.newGenres.map(async (elem) => {
+        await Anime_genres.create({
+            gid: elem.id,
+            aid: newAnime.id
         });
     });
 
-    elems.newStudio.map((index, elem) => {
-        Anime_studio.create({
-            StID: elem.ID,
-            AID: newAnime.ID
+    elems.newStudios.map(async (elem) => {
+        await Anime_studios.create({
+            stid: elem.id,
+            aid: newAnime.id
         });
     });
 
-    elems.newChar.map((index, elem) => {
-        Anime_genres.create({
-            Chname: elem.ID,
-            AID: newAnime.ID
+    elems.newChars.map(async (elem) => {
+        await Anime_characters.create({
+            chid: elem.id,
+            aid: newAnime.id
         });
     });
 }
