@@ -1,0 +1,417 @@
+const fs = require("fs");
+const {Sequelize, DataTypes} = require("sequelize");
+const sequelize = new Sequelize('anime_list', 'admin', 'Tb15092003!', {
+    host: 'localhost',
+    dialect: 'mssql',
+});
+
+sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+}).catch((error) => {
+    console.error('Unable to connect to the database: ', error);
+});
+
+const Anime = sequelize.define("animes", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    episodes: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    aired: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    pid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    synopsis: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }},
+    {
+        tableName: "animes",
+        timestamps: false
+    }
+);
+
+const Genres = sequelize.define("genres", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }}, 
+    {
+        tableName: "genres",
+        timestamps: false
+    }
+);
+
+const Anime_genres = sequelize.define("anime_genre", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    gid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    aid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }},
+    {
+        tableName: "anime_genre",
+        timestamps: false
+    }
+);
+
+const Studios = sequelize.define("studios", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }}, 
+    {
+        tableName: "studios",
+        timestamps: false
+    }
+);
+
+const Anime_studios = sequelize.define("anime_studio", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    stid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    aid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }},
+    {
+        tableName: "anime_studio",
+        timestamps: false
+    }
+);
+
+const Producers = sequelize.define("producers", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    }, 
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }},
+    {
+        tableName: "producers",
+        timestamps: false
+    }
+);
+
+const Characters = sequelize.define("characters", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    }, 
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    vaid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }},
+    {
+        tableName: "characters",
+        timestamps: false
+    }    
+);
+
+const Anime_characters = sequelize.define("anime_character", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    }, 
+    chid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    aid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }},
+    {
+        tableName: "anime_character",
+        timestamps: false
+    }    
+);
+
+const Voice_actors = sequelize.define("voice_actors", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    }, 
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }},
+    {
+        tableName: "voice_actors",
+        timestamps: false
+    }    
+);
+
+const Emotions = sequelize.define("emotions", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }},
+    {
+        tableName: "Emotions",
+        timestamps: false
+    }    
+);
+
+const Anime_emotion = sequelize.define("anime_emotion", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    aid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    eid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }},
+    {
+        tableName: "Anime_emotion",
+        timestamps: false
+    }
+);
+
+let data = JSON.parse(fs.readFileSync("data.json"));
+
+function convertDate(data) {
+    let args = data.split(" ");
+    let normalizedDate = "";
+    let counter = 0;
+
+    for (index in args) {
+        if (counter == 3) {
+            break;
+        }
+    
+        if (args[index] === "Jan") {
+            normalizedDate += "January ";
+            counter += 1;
+        } else if (args[index] === "Feb") {
+            normalizedDate += "February ";
+            counter += 1;
+        } else if (args[index] === "Mar") {
+            normalizedDate += "March ";
+            counter += 1;
+        } else if (args[index] === "Apr") {
+            normalizedDate += "April ";
+            counter += 1;
+        } else if (args[index] === "May") {
+            normalizedDate += "May ";
+            counter += 1;
+        } else if (args[index] === "Jun") {
+            normalizedDate += "June ";
+            counter += 1;
+        } else if (args[index] === "Jul") {
+            normalizedDate += "July ";
+            counter += 1;
+        } else if (args[index] === "Aug") {
+            normalizedDate += "August ";
+            counter += 1;
+        } else if (args[index] === "Sep") {
+            normalizedDate += "September ";
+            counter += 1;
+        } else if (args[index] === "Oct") {
+            normalizedDate += "October ";
+            counter += 1;
+        } else if (args[index] === "Nov") {
+            normalizedDate += "November ";
+            counter += 1;
+        } else if (args[index] === "Dec") {
+            normalizedDate += "December ";
+            counter += 1;
+        } else {
+            if (counter == 0) {
+                continue;
+            }
+            else {
+                if (args[index] != " ") {
+                    normalizedDate = normalizedDate + args[index] + " ";
+                    counter += 1;
+                }
+            }
+        }
+    }
+
+    return(normalizedDate);
+}
+
+async function InsertElements(data) {
+    let newChars = [],
+        newGenres = [],
+        newStudios = [],
+        newProducer;
+
+    for (index in data.genres) {
+        let genre = await Genres.findOne({ where: { name: data.genres[index] } });
+        if (genre === null) {
+            genre = await Genres.create(
+                {
+                    name: data.genres[index]
+                }
+            );
+        }
+
+        newGenres.push(genre);
+    }
+
+    for (index in data.studios) {
+        let studio = await Studios.findOne({ where: { name: data.studios[index] } });
+        if (studio === null) {
+            studio = await Studios.create(
+                {
+                    name: data.studios[index]
+                }
+            );
+        }
+
+        newStudios.push(studio);
+    }
+
+    for (index in data.producers) {
+        let producer = await Producers.findOne({ where: { name: data.producers[index] } });
+        if (producer === null) {
+            producer = await Producers.create(
+                {
+                    name: data.producers[index]
+                }
+            );
+        }
+
+        newProducer = producer;
+    }
+
+    for (index in data.characters) {
+        let character = await Characters.findOne({ where: { name: data.characters[index].name } });
+        if (character === null) {
+            let newVA = await Voice_actors.findOne({ where: { name: data.characters[index].voiceActor.name } });
+            if (newVA === null) {
+                newVA = await Voice_actors.create(
+                    {
+                        name: data.characters[index].voiceActor.name
+                    }
+                );
+            }
+        
+            character = await Characters.create(
+                {
+                    name: data.characters[index].name,
+                    vaid: newVA.id
+                }
+            );
+        }
+
+        newChars.push(character);
+    }
+
+    let result = {
+        newChars: newChars,
+        newGenres: newGenres,
+        newStudios: newStudios,
+        newProducer: newProducer
+    };
+
+    return(result);
+}
+
+async function InsertAnime(data) {
+    let anime = await Anime.findOne({ where: { name: data.JPname } });
+    if (anime != null) {
+        return 0;
+    }
+
+    let elems = await InsertElements(data);
+
+    let newAnime = await Anime.create({
+        name: data.JPname,
+        episodes: data.episodes,
+        aired: convertDate(data.aired),
+        pid: elems.newProducer.id,
+        rating: 9,
+        synopsis: data.description
+    });
+
+    elems.newGenres.map(async (elem) => {
+        await Anime_genres.create({
+            gid: elem.id,
+            aid: newAnime.id
+        });
+    });
+
+    elems.newStudios.map(async (elem) => {
+        await Anime_studios.create({
+            stid: elem.id,
+            aid: newAnime.id
+        });
+    });
+
+    elems.newChars.map(async (elem) => {
+        await Anime_characters.create({
+            chid: elem.id,
+            aid: newAnime.id
+        });
+    });
+}
+
+sequelize.sync().then(() => {
+    for (index in data) {
+        InsertAnime(data[index]);
+    } 
+}).catch((error) => {
+    console.error('Unable to create table : ', error);
+});

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Layout } from 'antd';
 import { Space, Table, Tag } from 'antd';
 
 import data from '../../Constants/data.json';
 
-const { Content } = Layout;
 const columns = [
   {
     title: 'Name',
@@ -68,11 +66,9 @@ const columns = [
 
 function ListContent() {
   return (
-    <Layout>
-      <Content>
-        <Table className="list" columns={columns} dataSource={data} />
-      </Content>
-    </Layout>
+    <div>
+      <Table className="list" columns={columns} dataSource={data} />
+    </div>
   )
 }
 

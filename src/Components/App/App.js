@@ -1,8 +1,9 @@
 import React from 'react';
-import { Layout, Input, List } from 'antd';
+import { Layout, Input } from 'antd';
 
 import './App.css';
 import AnimeList from '../AnimeList/AnimeList';
+import AnimeDetail from '../AnimeDetail/AnimeDetail';
 
 const { Header, Content } = Layout;
 
@@ -40,8 +41,8 @@ function App() {
           </div>
         </Header>
 
-        <Content style={{ backgroundColor: "white" }}>
-          <AnimeList></AnimeList>
+        <Content style={{ backgroundColor: 'black' }}>
+          <AnimeDetail></AnimeDetail>
         </Content>
       </Layout>
     </div>
