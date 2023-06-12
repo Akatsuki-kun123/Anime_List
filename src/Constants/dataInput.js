@@ -19,27 +19,27 @@ const Anime = sequelize.define("animes", {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     episodes: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     aired: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     pid: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     rating: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     synopsis: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }},
     {
         tableName: "animes",
@@ -227,7 +227,7 @@ const Anime_emotion = sequelize.define("anime_emotion", {
     }
 );
 
-let data = JSON.parse(fs.readFileSync("data.json"));
+let data = JSON.parse(fs.readFileSync("./src/Constants/data.json"));
 
 function convertDate(data) {
     let args = data.split(" ");
@@ -239,40 +239,40 @@ function convertDate(data) {
             break;
         }
     
-        if (args[index] === "Jan") {
+        if (args[index] == "Jan") {
             normalizedDate += "January ";
             counter += 1;
-        } else if (args[index] === "Feb") {
+        } else if (args[index] == "Feb") {
             normalizedDate += "February ";
             counter += 1;
-        } else if (args[index] === "Mar") {
+        } else if (args[index] == "Mar") {
             normalizedDate += "March ";
             counter += 1;
-        } else if (args[index] === "Apr") {
+        } else if (args[index] == "Apr") {
             normalizedDate += "April ";
             counter += 1;
-        } else if (args[index] === "May") {
+        } else if (args[index] == "May") {
             normalizedDate += "May ";
             counter += 1;
-        } else if (args[index] === "Jun") {
+        } else if (args[index] == "Jun") {
             normalizedDate += "June ";
             counter += 1;
-        } else if (args[index] === "Jul") {
+        } else if (args[index] == "Jul") {
             normalizedDate += "July ";
             counter += 1;
-        } else if (args[index] === "Aug") {
+        } else if (args[index] == "Aug") {
             normalizedDate += "August ";
             counter += 1;
-        } else if (args[index] === "Sep") {
+        } else if (args[index] == "Sep") {
             normalizedDate += "September ";
             counter += 1;
-        } else if (args[index] === "Oct") {
+        } else if (args[index] == "Oct") {
             normalizedDate += "October ";
             counter += 1;
-        } else if (args[index] === "Nov") {
+        } else if (args[index] == "Nov") {
             normalizedDate += "November ";
             counter += 1;
-        } else if (args[index] === "Dec") {
+        } else if (args[index] == "Dec") {
             normalizedDate += "December ";
             counter += 1;
         } else {
@@ -288,7 +288,7 @@ function convertDate(data) {
         }
     }
 
-    return(normalizedDate);
+    return(new Date(normalizedDate).toISOString());
 }
 
 async function InsertElements(data) {
@@ -298,8 +298,13 @@ async function InsertElements(data) {
         newProducer;
 
     for (index in data.genres) {
+        if (data.genres[index] == null) {
+            newGenres.push(null);
+            break;
+        }
+
         let genre = await Genres.findOne({ where: { name: data.genres[index] } });
-        if (genre === null) {
+        if (genre == null) {
             genre = await Genres.create(
                 {
                     name: data.genres[index]
@@ -311,8 +316,13 @@ async function InsertElements(data) {
     }
 
     for (index in data.studios) {
+        if (data.studios[index] == null) {
+            newStudios.push(null);
+            break;
+        }
+
         let studio = await Studios.findOne({ where: { name: data.studios[index] } });
-        if (studio === null) {
+        if (studio == null) {
             studio = await Studios.create(
                 {
                     name: data.studios[index]
@@ -324,8 +334,17 @@ async function InsertElements(data) {
     }
 
     for (index in data.producers) {
+        if (data.producers[index] == null) {
+            newProducer = null;
+            break;
+        }
+
+        if (index == 1) {
+            break;
+        }
+
         let producer = await Producers.findOne({ where: { name: data.producers[index] } });
-        if (producer === null) {
+        if (producer == null) {
             producer = await Producers.create(
                 {
                     name: data.producers[index]
@@ -338,9 +357,9 @@ async function InsertElements(data) {
 
     for (index in data.characters) {
         let character = await Characters.findOne({ where: { name: data.characters[index].name } });
-        if (character === null) {
+        if (character == null) {
             let newVA = await Voice_actors.findOne({ where: { name: data.characters[index].voiceActor.name } });
-            if (newVA === null) {
+            if (newVA == null) {
                 newVA = await Voice_actors.create(
                     {
                         name: data.characters[index].voiceActor.name
@@ -379,23 +398,23 @@ async function InsertAnime(data) {
 
     let newAnime = await Anime.create({
         name: data.JPname,
-        episodes: data.episodes,
+        episodes: (data.episodes ? data.episodes : null),
         aired: convertDate(data.aired),
-        pid: elems.newProducer.id,
-        rating: 9,
+        pid: (elems.newProducer ? elems.newProducer.id : null),
+        rating: Math.floor(Math.random() * 10),
         synopsis: data.description
     });
 
     elems.newGenres.map(async (elem) => {
         await Anime_genres.create({
-            gid: elem.id,
+            gid: (elem ? elem.id : null),
             aid: newAnime.id
         });
     });
 
     elems.newStudios.map(async (elem) => {
         await Anime_studios.create({
-            stid: elem.id,
+            stid: (elem ? elem.id : null),
             aid: newAnime.id
         });
     });
@@ -408,9 +427,10 @@ async function InsertAnime(data) {
     });
 }
 
-sequelize.sync().then(() => {
+sequelize.sync().then(async () => {
     for (index in data) {
-        InsertAnime(data[index]);
+        let check = await InsertAnime(data[index]);
+        console.log(check);
     } 
 }).catch((error) => {
     console.error('Unable to create table : ', error);

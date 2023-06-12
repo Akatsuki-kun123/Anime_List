@@ -154,13 +154,12 @@ function getData(options) {
             let anime = new Anime(JPname, ENname, image, aired, description, episodes, characters, producers, studios, genres);
             data.push(anime);
 
-            fs.writeFileSync("./data.json", JSON.stringify(data, null, '\t'));
-            
+            fs.writeFileSync("./src/Constants/data.json", JSON.stringify(data, null, '\t')); 
         }
     });
 }
 
-for (let limit = 0; limit < 1; limit++) {
+for (let limit = 0; limit < 11; limit++) {
     setTimeout(() => {
         searchImages(limit * 50);
     }, (interval + 500000 * limit).toString());

@@ -20,3 +20,6 @@ DELETE FROM voice_actors
 DELETE FROM anime_character
 DELETE FROM anime_genre
 DELETE FROM anime_studio
+
+ALTER TABLE animes
+ALTER COLUMN name NVARCHAR(max);
