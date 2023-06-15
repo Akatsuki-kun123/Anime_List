@@ -14,14 +14,7 @@ function ListHeader() {
     return (
         <div>
             <div style={{ display: 'flex', backgroundColor: "#EFEFEF" }}>
-                <UnorderedListOutlined 
-                    style={{ 
-                        fontSize: 20,
-                        marginTop: 20,
-                        marginLeft: 45,
-                        position: 'absolute',
-                    }} 
-                />
+                <UnorderedListOutlined style={{ fontSize: 20, marginTop: 20, marginLeft: 45, position: 'absolute' }}/>
 
                 <div style={{ 
                     color: "#005DFF",
@@ -35,14 +28,7 @@ function ListHeader() {
                 </div>
             </div>
 
-            <Space 
-                style={{ 
-                    marginTop: 20,
-                    marginLeft: 20,
-                    marginBottom: 20,
-                }}
-                size={ 'large' }
-            >
+            <Space style={{ marginTop: 20, marginLeft: 20, marginBottom: 20 }} size={ 'large' }>
                 <Button type="primary">All Anime</Button>
                 <Button type="text">Top Airing</Button>
                 <Button type="text">Top Upcoming</Button>

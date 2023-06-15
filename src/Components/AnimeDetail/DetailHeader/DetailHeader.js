@@ -12,14 +12,7 @@ function DetailHeader() {
 
     return (
         <div>
-            <Space 
-                style={{ 
-                    marginTop: 10,
-                    marginLeft: '50%',
-                    marginBottom: 20,
-                }}
-                size={ 'small' }
-            >
+            <Space style={{ float: 'right', marginTop: 10, marginRight: 15, marginBottom: 20 }} size={ 'small' }>
                 <Button type="text">All Anime</Button>
                 <Button type="text">Top Airing</Button>
                 <Button type="text">Top Upcoming</Button>

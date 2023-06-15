@@ -21,6 +21,10 @@ const Anime = sequelize.define("animes", {
         type: DataTypes.STRING,
         allowNull: true
     },
+    image: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
     episodes: {
         type: DataTypes.INTEGER,
         allowNull: true
@@ -145,6 +149,10 @@ const Characters = sequelize.define("characters", {
         type: DataTypes.STRING,
         allowNull: false
     },
+    image: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
     vaid: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -184,6 +192,10 @@ const Voice_actors = sequelize.define("voice_actors", {
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    image: {
+        type: DataTypes.TEXT,
+        allowNull: true
     }},
     {
         tableName: "voice_actors",
@@ -356,13 +368,24 @@ async function InsertElements(data) {
     }
 
     for (index in data.characters) {
+        if (data.characters[index] == null) {
+            newChars.push(null);
+            break;
+        }
+
         let character = await Characters.findOne({ where: { name: data.characters[index].name } });
         if (character == null) {
+            if (data.characters[index].voiceActor.name == undefined) {
+                newChars.push(null);
+                break;
+            }
+
             let newVA = await Voice_actors.findOne({ where: { name: data.characters[index].voiceActor.name } });
             if (newVA == null) {
                 newVA = await Voice_actors.create(
                     {
-                        name: data.characters[index].voiceActor.name
+                        name: data.characters[index].voiceActor.name,
+                        image: data.characters[index].voiceActor.image
                     }
                 );
             }
@@ -370,6 +393,7 @@ async function InsertElements(data) {
             character = await Characters.create(
                 {
                     name: data.characters[index].name,
+                    image: data.characters[index].image,
                     vaid: newVA.id
                 }
             );
@@ -398,6 +422,7 @@ async function InsertAnime(data) {
 
     let newAnime = await Anime.create({
         name: data.JPname,
+        image: (data.image ? data.image : null),
         episodes: (data.episodes ? data.episodes : null),
         aired: convertDate(data.aired),
         pid: (elems.newProducer ? elems.newProducer.id : null),
@@ -419,12 +444,14 @@ async function InsertAnime(data) {
         });
     });
 
-    elems.newChars.map(async (elem) => {
-        await Anime_characters.create({
-            chid: elem.id,
-            aid: newAnime.id
+    if (elems.newChars != [null]) {
+        elems.newChars.map(async (elem) => {
+            await Anime_characters.create({
+                chid: elem.id,
+                aid: newAnime.id
+            });
         });
-    });
+    }
 }
 
 sequelize.sync().then(async () => {

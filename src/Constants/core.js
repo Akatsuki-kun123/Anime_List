@@ -3,7 +3,7 @@ const fs = require('fs');
 const request = require('request');
 const cheerio = require('cheerio');
 
-var data = [];          //Biến data lưu trữ giá trị của các Object "Anime" 
+var data = JSON.parse(fs.readFileSync("./src/Constants/data.json"));;          //Biến data lưu trữ giá trị của các Object "Anime" 
 var interval = 0;       //Biến thời gian trễ để tạo khoảng cách thời gian giữa các request
 
 class Anime {
@@ -114,6 +114,9 @@ function getData(options) {
                 characters.push(char);
             });
             
+            JPname = $('div[itemprop="name"]').find('strong').text();
+            ENname = JPname;
+
             //Lấy dữ liệu cho các trường còn lại
             $('div[class="spaceit_pad"]').map(function(index, elem) {
                 let stop = false;   //Biến dừng khi đạt đủ thông tin cần thiết
@@ -159,8 +162,8 @@ function getData(options) {
     });
 }
 
-for (let limit = 0; limit < 11; limit++) {
+for (let limit = 11; limit < 21; limit++) {
     setTimeout(() => {
         searchImages(limit * 50);
-    }, (interval + 500000 * limit).toString());
+    }, (interval + 500000 * (limit - 11)).toString());
 }

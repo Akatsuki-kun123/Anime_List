@@ -4,7 +4,7 @@ import DetailContent from './DetailContent.js';
 
 function AnimeDetail() {
     return (
-        <div>
+        <div style={{ backgroundColor: 'black' }}>
             <DetailHeader></DetailHeader>
             <DetailContent></DetailContent>
         </div>

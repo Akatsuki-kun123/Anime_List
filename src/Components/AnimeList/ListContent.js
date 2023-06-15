@@ -5,6 +5,12 @@ import data from '../../Constants/data.json';
 
 const columns = [
   {
+    title: 'Image',
+    dataIndex: 'image',
+    key: 'image',
+    render: (image) => <img src={image}></img>
+  },
+  {
     title: 'Name',
     dataIndex: 'JPname',
     key: 'JPname',

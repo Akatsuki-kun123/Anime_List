@@ -14,15 +14,8 @@ function App() {
         <Header className="header">
           <div className="logo" />
 
-          <div style={{ 
-            display: 'flex', 
-            flexDirection: 'row',
-          }}>
-            <div style={{
-              color: 'white',
-              fontSize: 20, 
-              fontWeight: 'bold', 
-            }}>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <div style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>
               AnimeList
             </div>
 
@@ -41,7 +34,7 @@ function App() {
           </div>
         </Header>
 
-        <Content style={{ backgroundColor: 'black' }}>
+        <Content>
           <AnimeDetail></AnimeDetail>
         </Content>
       </Layout>

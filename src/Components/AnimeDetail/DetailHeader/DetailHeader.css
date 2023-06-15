@@ -1,0 +1,13 @@
+.ant-btn {
+    background-color: whitesmoke;
+}
+
+.ant-btn:hover {
+    border-color: #bee2e5;
+    background-color: blue;
+}
+
+.ant-btn:focus {
+    color: blue;
+    border-color: #bee2e5;
+}
