@@ -1,12 +1,12 @@
-import React from 'react';
+import React  from 'react';
 import DetailHeader from './DetailHeader/DetailHeader.js';
 import DetailContent from './DetailContent.js';
 
-function AnimeDetail() {
+function AnimeDetail(props) {
     return (
         <div style={{ backgroundColor: 'black' }}>
-            <DetailHeader></DetailHeader>
-            <DetailContent></DetailContent>
+            <DetailHeader onDetail={props.onDetail}></DetailHeader>
+            <DetailContent name={props.name}></DetailContent>
         </div>
     )
 }

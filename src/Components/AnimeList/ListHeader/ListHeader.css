@@ -1,0 +1,14 @@
+.ant-btn {
+    border-color: black;
+    background-color: whitesmoke;
+}
+
+.ant-btn:hover {
+    background-color: gainsboro !important;
+}
+
+.ant-btn:focus {
+    color: blue;
+    border-color: blue !important;
+    background-color: whitesmoke !important;
+}

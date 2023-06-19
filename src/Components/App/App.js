@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Input } from 'antd';
 
 import './App.css';
@@ -8,6 +8,12 @@ import AnimeDetail from '../AnimeDetail/AnimeDetail';
 const { Header, Content } = Layout;
 
 function App() {
+  const [name, setName] = useState(null);
+
+  const onDetail = (name) => {
+    setName(name);
+  }
+
   return (
     <div className="App">
       <Layout>
@@ -35,7 +41,7 @@ function App() {
         </Header>
 
         <Content>
-          <AnimeDetail></AnimeDetail>
+          { name ? <AnimeDetail name={name} onDetail={onDetail}></AnimeDetail> : <AnimeList onDetail={onDetail}></AnimeList> }
         </Content>
       </Layout>
     </div>

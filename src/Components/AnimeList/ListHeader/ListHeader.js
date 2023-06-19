@@ -29,7 +29,7 @@ function ListHeader() {
             </div>
 
             <Space style={{ marginTop: 20, marginLeft: 20, marginBottom: 20 }} size={ 'large' }>
-                <Button type="primary">All Anime</Button>
+                <Button type="text">All Anime</Button>
                 <Button type="text">Top Airing</Button>
                 <Button type="text">Top Upcoming</Button>
                 <Button type="text">Top TV Series</Button>
