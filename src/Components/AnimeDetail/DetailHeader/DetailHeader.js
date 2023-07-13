@@ -12,15 +12,13 @@ function DetailHeader(props) {
 
     return (
         <div>
-            <Space style={{ float: 'right', marginTop: 10, marginRight: 15, marginBottom: 20 }} size={ 'small' }>
-                <Button type="text" onClick={onAllAnime}>All Anime</Button>
-                <Button type="text">Top Airing</Button>
-                <Button type="text">Top Upcoming</Button>
-                <Button type="text">Top TV Series</Button>
-                <Button type="text">Top Movies</Button>
+            <Space style={{ float: 'right', marginTop: 20, marginRight: 15, marginBottom: 20 }} size={ 'small' }>
+                <Button className='detail-button' type='text' onClick={onAllAnime}>All Anime</Button>
+                <Button className='detail-button' type='text'>Top Airing</Button>
+                <Button className='detail-button' type='text'>Top Upcoming</Button>
+                <Button className='detail-button' type='text'>Top TV Series</Button>
+                <Button className='detail-button' type='text'>Top Movies</Button>
             </Space>
-
-            <div style={{ marginBottom: 30 }}>Hello</div>
         </div>
     );
 };

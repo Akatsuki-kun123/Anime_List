@@ -1,14 +1,14 @@
-.ant-btn {
+.list-button {
     border-color: black;
     background-color: whitesmoke;
 }
 
-.ant-btn:hover {
+.list-button:hover {
     background-color: gainsboro !important;
 }
 
-.ant-btn:focus {
+.list-button-primary {
     color: blue;
-    border-color: blue !important;
-    background-color: whitesmoke !important;
+    border-color: blue;
+    background-color: whitesmoke;
 }

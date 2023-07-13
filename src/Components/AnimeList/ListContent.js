@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Space, Table, Tag } from 'antd';
 
-import data from '../../Constants/data.json';
+import axios from 'axios';
 
 function ListContent(props) {
+  const [list, setList] = useState(null);
+
   const columns = [
     {
       title: 'Image',
       dataIndex: 'image',
       key: 'image',
-      render: (image) => <img src={image}></img>
+      render: (image) => <img width={112.5} height={159} src={image}></img>
     },
     {
       title: 'Name',
-      dataIndex: 'JPname',
-      key: 'JPname',
-      render: (text) => <a onClick={() => onDetail(text)}>{text}</a>,
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a onClick={() => onDetail(text)}>{ text }</a>,
     },
     {
       title: 'Episodes',
@@ -31,6 +33,11 @@ function ListContent(props) {
       title: 'Studios',
       dataIndex: 'studios',
       key: 'studios',
+      render: (_, { studio }) => (
+        <>
+          <a>{ studio.name }</a>
+        </>
+      ),
     },
     {
       title: 'Genres',
@@ -39,14 +46,14 @@ function ListContent(props) {
       render: (_, { genres }) => (
         <>
           {genres.map((genre) => {
-            let color = genre.length > 7 ? 'geekblue' : 'green';
-            if (genre === 'Drama') {
+            let color = genre.name.length > 7 ? 'geekblue' : 'green';
+            if (genre.name === 'Drama') {
               color = 'volcano';
             }
 
             return (
-              <Tag color={color} key={genre}>
-                {genre.toUpperCase()}
+              <Tag color={color} key={genre.name}>
+                { genre.name.toUpperCase() }
               </Tag>
             );
             })
@@ -59,10 +66,10 @@ function ListContent(props) {
       key: 'producers',
       dataIndex: 'producers',
       render: (_, { producers }) => (
-        <Space size="middle">
+        <Space size='middle'>
           {producers.map((producer) => {
             return (
-              <a>{producer}</a>
+              <a>{ producer.name }</a>
             );
             })
           }
@@ -72,12 +79,23 @@ function ListContent(props) {
   ];
 
   const onDetail = (name) => {
-    props.onDetail(name);
+    axios.post('/api/getDetail', { name: name }).then(res => {
+        props.onDetail(res.data.data);
+      }
+    );
   }
+
+  useEffect(() => {
+    axios.get('/api/list').then(result => {
+      setList(result.data.data);
+    });
+  }, []);
 
   return (
     <div>
-      <Table className="list" columns={columns} dataSource={data} />
+      {list ? <Table className='list' columns={columns} dataSource={list} rowKey='key' /> : 
+        <div style={{ backgroundColor: 'white', height: 5000 }}></div>
+      }
     </div>
   )
 }

@@ -8,17 +8,17 @@ import AnimeDetail from '../AnimeDetail/AnimeDetail';
 const { Header, Content } = Layout;
 
 function App() {
-  const [name, setName] = useState(null);
+  const [detail, setDetail] = useState(null);
 
-  const onDetail = (name) => {
-    setName(name);
+  const onDetail = (data) => {
+    setDetail(data);
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <Layout>
-        <Header className="header">
-          <div className="logo" />
+        <Header className='header'>
+          <div className='logo' />
 
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <div style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>
@@ -34,14 +34,14 @@ function App() {
                 position: 'absolute',
                 marginTop: 15,
               }}
-              className="anime_search_bar" 
-              placeholder="Search Anime"
+              className='anime_search_bar' 
+              placeholder='Search Anime'
             />
           </div>
         </Header>
 
         <Content>
-          { name ? <AnimeDetail name={name} onDetail={onDetail}></AnimeDetail> : <AnimeList onDetail={onDetail}></AnimeList> }
+          { detail ? <AnimeDetail detail={detail} onDetail={onDetail}></AnimeDetail> : <AnimeList onDetail={onDetail}></AnimeList> }
         </Content>
       </Layout>
     </div>

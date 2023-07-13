@@ -21,6 +21,10 @@ const Anime = sequelize.define("animes", {
         type: DataTypes.STRING,
         allowNull: true
     },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     image: {
         type: DataTypes.TEXT,
         allowNull: true
@@ -33,7 +37,7 @@ const Anime = sequelize.define("animes", {
         type: DataTypes.STRING,
         allowNull: true
     },
-    pid: {
+    stid: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
@@ -103,26 +107,6 @@ const Studios = sequelize.define("studios", {
     }
 );
 
-const Anime_studios = sequelize.define("anime_studio", {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    stid: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    aid: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }},
-    {
-        tableName: "anime_studio",
-        timestamps: false
-    }
-);
-
 const Producers = sequelize.define("producers", {
     id: {
         type: DataTypes.INTEGER,
@@ -135,6 +119,26 @@ const Producers = sequelize.define("producers", {
     }},
     {
         tableName: "producers",
+        timestamps: false
+    }
+);
+
+const Anime_producers = sequelize.define("anime_producer", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    pid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    aid: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }},
+    {
+        tableName: "anime_producer",
         timestamps: false
     }
 );
@@ -155,7 +159,7 @@ const Characters = sequelize.define("characters", {
     },
     vaid: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     }},
     {
         tableName: "characters",
@@ -306,15 +310,24 @@ function convertDate(data) {
 async function InsertElements(data) {
     let newChars = [],
         newGenres = [],
-        newStudios = [],
-        newProducer;
+        newProducers = [],
+        newStudio;
 
     for (index in data.genres) {
         if (data.genres[index] == null) {
-            newGenres.push(null);
+            let genre = await Genres.findOne({ where: { name: "null" } });
+            if (genre == null) {
+                genre = await Genres.create(
+                    {
+                        name: "null"
+                    }
+                );
+            }
+    
+            newGenres.push(genre);
             break;
         }
-
+    
         let genre = await Genres.findOne({ where: { name: data.genres[index] } });
         if (genre == null) {
             genre = await Genres.create(
@@ -323,38 +336,25 @@ async function InsertElements(data) {
                 }
             );
         }
-
+    
         newGenres.push(genre);
     }
-
-    for (index in data.studios) {
-        if (data.studios[index] == null) {
-            newStudios.push(null);
-            break;
-        }
-
-        let studio = await Studios.findOne({ where: { name: data.studios[index] } });
-        if (studio == null) {
-            studio = await Studios.create(
-                {
-                    name: data.studios[index]
-                }
-            );
-        }
-
-        newStudios.push(studio);
-    }
-
+    
     for (index in data.producers) {
         if (data.producers[index] == null) {
-            newProducer = null;
+            let producer = await Producers.findOne({ where: { name: "null" } });
+            if (producer == null) {
+                producer = await Producers.create(
+                    {
+                        name: "null"
+                    }
+                );
+            }
+    
+            newProducers.push(producer);
             break;
         }
-
-        if (index == 1) {
-            break;
-        }
-
+    
         let producer = await Producers.findOne({ where: { name: data.producers[index] } });
         if (producer == null) {
             producer = await Producers.create(
@@ -363,13 +363,54 @@ async function InsertElements(data) {
                 }
             );
         }
-
-        newProducer = producer;
+    
+        newProducers.push(producer);
+    }
+    
+    for (index in data.studios) {
+        if (data.studios[index] == null) {
+            let studio = await Studios.findOne({ where: { name: "null" } });
+            if (studio == null) {
+                studio = await Studios.create(
+                    {
+                        name: "null"
+                    }
+                );
+            }
+    
+            newStudio = studio;
+            break;
+        }
+    
+        if (index == 1) {
+            break;
+        }
+    
+        let studio = await Studios.findOne({ where: { name: data.studios[index] } });
+        if (studio == null) {
+            studio = await Studios.create(
+                {
+                    name: data.studios[index]
+                }
+            );
+        }
+    
+        newStudio = studio;
     }
 
     for (index in data.characters) {
         if (data.characters[index] == null) {
-            newChars.push(null);
+            let character = await Characters.findOne({ where: { name: "null" } });
+            if (character == null) {
+                character = await Characters.create(
+                    {
+                        name: "null",
+                        image: "null"
+                    }
+                );
+            }
+    
+            newChars.push(character);
             break;
         }
 
@@ -405,8 +446,8 @@ async function InsertElements(data) {
     let result = {
         newChars: newChars,
         newGenres: newGenres,
-        newStudios: newStudios,
-        newProducer: newProducer
+        newProducers: newProducers,
+        newStudio: newStudio
     };
 
     return(result);
@@ -422,24 +463,25 @@ async function InsertAnime(data) {
 
     let newAnime = await Anime.create({
         name: data.JPname,
+        title: (data.ENname ? data.ENname : null),
         image: (data.image ? data.image : null),
         episodes: (data.episodes ? data.episodes : null),
         aired: convertDate(data.aired),
-        pid: (elems.newProducer ? elems.newProducer.id : null),
+        stid: elems.newStudio.id,
         rating: Math.floor(Math.random() * 10),
         synopsis: data.description
     });
 
     elems.newGenres.map(async (elem) => {
         await Anime_genres.create({
-            gid: (elem ? elem.id : null),
+            gid: elem.id,
             aid: newAnime.id
         });
     });
 
-    elems.newStudios.map(async (elem) => {
-        await Anime_studios.create({
-            stid: (elem ? elem.id : null),
+    elems.newProducers.map(async (elem) => {
+        await Anime_producers.create({
+            pid: elem.id,
             aid: newAnime.id
         });
     });

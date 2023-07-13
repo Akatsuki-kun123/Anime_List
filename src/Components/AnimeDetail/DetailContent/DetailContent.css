@@ -1,0 +1,13 @@
+.custom-list {
+    background-color: black; /* Replace with your desired background color */
+}
+
+.edit-button {
+    color: blue;
+    background-color: aliceblue;
+}
+
+.edit-button:hover {
+    color: blue !important;
+    background-color: gainsboro !important;
+}
