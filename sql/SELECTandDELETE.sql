@@ -6,6 +6,8 @@ SET image = 'https://cdn.myanimelist.net/images/anime/1908/135431.jpg'
 WHERE id = 5399;
 
 SELECT * FROM animes
+ORDER BY rating ASC;
+
 SELECT * FROM studios
 SELECT * FROM producers Where name='null'
 SELECT * FROM genres
@@ -48,7 +50,7 @@ ALTER TABLE comments
 ADD aid int
 
 
-SELECT [animes].[id], [animes].[name], [animes].[title], [animes].[image], [animes].[episodes], [animes].[aired], [animes].[rating], [animes].[synopsis], 
+SELECT TOP 5 PERCENT [animes].[id], [animes].[name], [animes].[title], [animes].[image], [animes].[episodes], [animes].[aired], [animes].[rating], [animes].[synopsis], 
 	   [producers].[id] AS [producers.id], [producers].[name] AS [producers.name], 
 	   [studio].[id] AS [studio.id], [studio].[name] AS [studio.name], 
 	   [genres].[id] AS [genres.id], [genres].[name] AS [genres.name], 
@@ -71,6 +73,6 @@ LEFT OUTER JOIN [voice_actors] AS [characters->voice_actor]
 ON [characters].[vaid] = [characters->voice_actor].[id] 
 
 LEFT OUTER JOIN [comments] AS [comments] 
-ON [animes].[id] = [comments].[aid] 
+ON [animes].[id] = [comments].[aid]
 
-WHERE [animes].[name] = 'ç|ÇÃòBã‡èpét FULLMETAL ALCHEMIST'
+ORDER BY [animes].[aired] DESC;

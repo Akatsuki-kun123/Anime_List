@@ -86,10 +86,10 @@ function ListContent(props) {
   }
 
   useEffect(() => {
-    axios.get('/api/list').then(result => {
+    axios.post('/api/list', { type: props.category }).then(result => {
       setList(result.data.data);
     });
-  }, []);
+  }, [props.category]);
 
   return (
     <div>

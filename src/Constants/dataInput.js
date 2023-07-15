@@ -1,7 +1,8 @@
+require('dotenv').config();
 const fs = require("fs");
 const {Sequelize, DataTypes} = require("sequelize");
-const sequelize = new Sequelize('anime_list', 'admin', 'Tb15092003!', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.USER_NAME, process.env.PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'mssql',
 });
 

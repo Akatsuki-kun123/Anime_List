@@ -5,13 +5,7 @@ import { UnorderedListOutlined } from '@ant-design/icons';
 
 import './ListHeader.css'
 
-const onChange = (key) => {
-    console.log(key);
-};
-
-function ListHeader() {
-    const [category, setCategory] = useState('all');
-
+function ListHeader(props) {
     return (
         <div>
             <div style={{ display: 'flex', backgroundColor: '#EFEFEF' }}>
@@ -30,11 +24,18 @@ function ListHeader() {
             </div>
 
             <Space style={{ marginTop: 20, marginLeft: 20, marginBottom: 20 }} size={'large'}>
-                <Button className='list-button-primary' type='primary'>All Anime</Button>
-                <Button className='list-button' type='text'>Top Airing</Button>
-                <Button className='list-button' type='text'>Top Upcoming</Button>
-                <Button className='list-button' type='text'>Top TV Series</Button>
-                <Button className='list-button' type='text'>Top Movies</Button>
+                { props.category == 'all' ? <Button className='list-button-primary' type='primary'>Top Anime</Button> 
+                    : <Button className='list-button' type='text' onClick={() => props.changeCategory('all')}>Top Anime</Button> 
+                }
+                { props.category == 'Aired' ? <Button className='list-button-primary' type='primary'>Top Airing</Button> 
+                    : <Button className='list-button' type='text' onClick={() => props.changeCategory('Aired')}>Top Airing</Button> 
+                }
+                { props.category == 'Movies' ? <Button className='list-button-primary' type='primary'>Top Movies</Button> 
+                    : <Button className='list-button' type='text' onClick={() => props.changeCategory('Movies')}>Top Movies</Button> 
+                }
+                { props.category == 'TV Series' ? <Button className='list-button-primary' type='primary'>Top TV Series</Button> 
+                    : <Button className='list-button' type='text' onClick={() => props.changeCategory('TV Series')}>Top TV Series</Button> 
+                }
             </Space>
         </div>
     );

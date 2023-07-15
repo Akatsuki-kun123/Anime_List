@@ -85,9 +85,7 @@ function DetailContent(props) {
     useEffect(() => {  
         let data = props.detail[0];
         setAnime(data);
-        setComments(data.comments);
-
-        console.log('Pass');
+        setComments(data.comments); 
 
         let producer_string = '';
         for (let index in data.producers) {

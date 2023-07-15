@@ -7,6 +7,12 @@
     background-color: gainsboro !important;
 }
 
+.list-button:focus {
+    color: blue !important;
+    border-color: blue !important;
+    background-color: whitesmoke !important;
+}
+
 .list-button-primary {
     color: blue;
     border-color: blue;
