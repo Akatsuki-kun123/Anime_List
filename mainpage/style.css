@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #E8E6E3
+}
+
+#header,
+#menu,
+#search,
+#watch-list,
+#login {
+    height: 60px;
+    line-height: 60px;
+}
+
+#header {
+    background-color: rgb(14, 15, 15);
+}
+
+#menu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+#menu ul {
+    list-style: none;
+    padding-left: 0px;
+
+}
+
+#menu>ul>li a {
+    padding: 0px 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #4CAFFE;
+}
+
+#menu li {
+    position: relative;
+}
+
+#menu li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+#menu ul.sub-menu {
+    position: absolute;
+    background-color: rgb(24, 26, 27);
+    padding: 0px 0px;
+    list-style: none;
+    width: 150px;
+    display: none;
+    top: 60px;
+
+}
+
+#menu ul.sub-menu li a {
+    border-bottom: 1px solid gray;
+    padding: px 10px;
+    height: 40px;
+    line-height: 40px;
+}
+
+#menu li:hover>ul.sub-menu {
+    display: block;
+}
+
+#search input,
+#search button {
+    height: 30px;
+}
+
+#search input{
+    background-color: rgb(24,26,27);
+}
+
+#search button {
+    padding: 0px 6px;
+}
+
+#search-bar {
+    padding: 15px;
+}
+
+#watch-list span {
+    color: #4CAFFE;
+    text-transform: uppercase;
+}
+
+#watch-list a{
+    text-decoration: none;
+}
+
+#log-in a{
+    text-decoration: none;
+
+}
+
+#main-slide {
+    background-color: black;
+}
+
+#slider {
+    padding: 5px 0px
+}
+
+#slider img {
+    width: 576px;
+    height: 800px;
+}
+
+#up-next {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#up-next img {
+    height: 188px;
+    width: 140px;
+}
+
+.card-item{
+    background-color: #141516;
+}
+
+#top-list {
+    background-color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#top-list h2{
+    padding: 10px 0px 20px 0px;
+    color: lightskyblue;
+    font-weight: bold;
+}
+
+#top-list img {
+    height: 250px;
+}
+
+#list-anime{
+    width: 1150px;
+    display: flex;
+    justify-content: space-between;
+}
+
