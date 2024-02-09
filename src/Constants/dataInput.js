@@ -1,6 +1,7 @@
 require('dotenv').config();
+
 const fs = require("fs");
-const {Sequelize, DataTypes} = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.USER_NAME, process.env.PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
@@ -11,7 +12,7 @@ sequelize.authenticate().then(() => {
 }).catch((error) => {
     console.error('Unable to connect to the database: ', error);
 });
-
+/*
 const Anime = sequelize.define("animes", {
     id: {
         type: DataTypes.INTEGER,
@@ -505,3 +506,4 @@ sequelize.sync().then(async () => {
 }).catch((error) => {
     console.error('Unable to create table : ', error);
 });
+*/

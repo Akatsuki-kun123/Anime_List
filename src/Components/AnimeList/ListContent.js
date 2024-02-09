@@ -3,7 +3,10 @@ import { Space, Table, Tag } from 'antd';
 
 import axios from 'axios';
 
+import { getList } from '../../Constants/AnimeList';
+
 function ListContent(props) {
+  const [test, setTest] = useState(null);
   const [list, setList] = useState(null);
 
   const columns = [
@@ -86,9 +89,19 @@ function ListContent(props) {
   }
 
   useEffect(() => {
+    setTest(1);
     axios.post('/api/list', { type: props.category }).then(result => {
       setList(result.data.data);
     });
+
+    /*
+    getList().then((value) => {
+      setTest(value);
+      console.log(test);
+    });
+    */
+
+    console.log(test);
   }, [props.category]);
 
   return (
