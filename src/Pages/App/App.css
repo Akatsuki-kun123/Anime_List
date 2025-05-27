@@ -1,0 +1,18 @@
+html {
+  background-color: black;
+}
+
+.container {
+  background-color: rgb(0, 0, 0);
+}
+
+.header {
+  color: white;
+  text-align: center;
+  background-color: rgb(17, 17, 17);
+}
+
+.content {
+  display: flex;
+  margin-top: 30pt;
+}

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment";
 
 import { Space, Avatar, Button, Form, Input, List, Image, Modal } from "antd";
 import { Comment } from "@ant-design/compatible";
 import {
-  FacebookOutlined,
-  TwitterOutlined,
-  InstagramOutlined,
-  WeiboOutlined,
   UserOutlined,
+  WeiboOutlined,
+  TwitterOutlined,
+  FacebookOutlined,
+  InstagramOutlined,
 } from "@ant-design/icons";
+
+import axios from "axios";
+import moment from "moment";
 
 import "./DetailContent.css";
 import avatar from "./Avatar/147285.png";
-import axios from "axios";
 
 const { TextArea } = Input;
 const CommentList = ({ comments }) => (
@@ -52,9 +53,11 @@ const CommentList = ({ comments }) => (
     )}
   />
 );
+
 const handleDelete = (comment) => {
   axios.post("/api/delComment", { data: comment });
 };
+
 const Editor = ({
   onSetUser,
   onComment,
@@ -92,6 +95,7 @@ const Editor = ({
 function DetailContent(props) {
   const [anime, setAnime] = useState(null);
   const [genres, setGenres] = useState(null);
+  const [studios, setStudios] = useState(null);
   const [producers, setProducers] = useState(null);
 
   const [user, setUser] = useState("");
@@ -149,13 +153,23 @@ function DetailContent(props) {
   };
 
   function replaceWithBr() {
-    return anime.synopsis.replace(/\n/g, "<br />");
+    return anime.description.replace(/\n/g, "<br />");
   }
 
   useEffect(() => {
-    let data = props.detail[0];
+    let data = props.detail;
     setAnime(data);
-    setComments(data.comments);
+    //setComments(data.comments);
+
+    let studio_string = "";
+    for (let index in data.studios) {
+      if (index == data.studios.length - 1) {
+        studio_string = studio_string + data.studios[index].name;
+        break;
+      }
+      studio_string = studio_string + data.studios[index].name + ", ";
+    }
+    setStudios(studio_string);
 
     let producer_string = "";
     for (let index in data.producers) {
@@ -297,7 +311,7 @@ function DetailContent(props) {
                   </div>
 
                   <div style={{ marginLeft: 20, color: "white" }}>
-                    Studio(s): {anime.studio.name}
+                    Studio(s): {studios}
                   </div>
 
                   <div style={{ marginLeft: 20, color: "white" }}>

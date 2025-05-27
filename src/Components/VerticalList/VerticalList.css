@@ -1,0 +1,88 @@
+.vertical-list {
+  width: 100%;
+
+  margin-bottom: 20px;
+}
+
+.vertical-list-title {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(88, 88, 88);
+
+  color: white;
+  font-weight: bold;
+  font-size: 15pt;
+}
+
+.vertical-list-container {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-item {
+  gap: 12px;
+  padding: 8px;
+  display: flex;
+  border-radius: 6px;
+  align-items: center;
+
+  background-color: #1c1c1c;
+
+  transition: background 0.2s ease;
+}
+
+.vertical-item:hover {
+  background-color: #2a2a2a;
+}
+
+.vertical-rank {
+  width: 20px;
+
+  margin-top: 5px;
+  text-align: right;
+
+  color: #ccc;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.vertical-image {
+  width: 80px;
+  height: 110px;
+
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.vertical-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  color: white;
+}
+
+.vertical-title {
+  margin-bottom: 4px;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.vertical-meta-row {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #bbbbbb;
+  margin-top: 2px;
+}
+.meta-item {
+  white-space: nowrap;
+}
+
+.vertical-airing {
+  font-size: 11px;
+  color: #999999;
+  margin-top: 2px;
+}
