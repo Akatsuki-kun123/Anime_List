@@ -25,7 +25,7 @@ function ReviewWidget({ reviews }) {
               </div>
 
               <div className="review-text">
-                {review.content.length > 300
+                {review.content?.length > 300
                   ? review.content.slice(0, 300) + "... "
                   : review.content}
                 <span className="read-more">(read more)</span>

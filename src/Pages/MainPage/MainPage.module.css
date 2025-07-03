@@ -42,17 +42,6 @@
   background-color: rgb(80, 112, 255);
 }
 
-.ant-dropdown-menu {
-  background-color: rgb(80, 80, 80) !important;
-}
-.ant-dropdown-menu-item {
-  color: white !important;
-}
-.ant-dropdown-menu-item:hover {
-  color: black !important;
-  background-color: rgb(255, 255, 255) !important;
-}
-
 .mainpage-content {
   width: 900pt;
   height: calc(100% - 25pt);

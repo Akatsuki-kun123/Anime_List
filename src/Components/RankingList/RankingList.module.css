@@ -1,0 +1,107 @@
+.top-table {
+  width: 100%;
+
+  color: white;
+  font-size: 14px;
+}
+
+.table-header,
+.table-row {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.table-header {
+  border-bottom: 2px solid #666;
+
+  font-weight: bold;
+  background-color: rgb(34, 34, 34);
+}
+
+.col-rank {
+  width: 70px;
+
+  text-align: center;
+}
+
+.table-header .col-title {
+  display: flex;
+}
+
+.col-title {
+  flex: 1;
+  gap: 10px;
+  display: flex;
+  padding-left: 60px;
+}
+
+.anime-thumbnail {
+  width: 100px;
+  height: 140px;
+
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.anime-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.anime-title {
+  margin: 10px 0;
+
+  color: #7abbfc;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.anime-sub {
+  margin-top: 10px;
+
+  color: #aaa;
+  font-size: 15px;
+}
+
+.col-score {
+  width: 80px;
+
+  text-align: center;
+
+  color: gold;
+  font-weight: bold;
+}
+
+.col-your-score {
+  width: 100px;
+
+  text-align: center;
+
+  color: #ccc;
+}
+
+.col-status {
+  width: 140px;
+
+  text-align: center;
+}
+
+.add-btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+
+  color: white;
+  background-color: #2563eb;
+
+  cursor: pointer;
+}
+
+.col-rank,
+.col-title,
+.col-score,
+.col-your-score {
+  border-right: 1px solid #333;
+}

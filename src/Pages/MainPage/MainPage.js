@@ -7,7 +7,7 @@ import VerticalList from "../../Components/VerticalList/VerticalList.js";
 import ScrollableRow from "../../Components/ScrollableRow/ScrollableRow.js";
 import ReviewWidget from "../../Components/Widget/ReviewWidget/ReviewWidget.js";
 
-import "./MainPage.css";
+import styles from "./MainPage.module.css";
 import axios from "axios";
 
 const { Header, Content } = Layout;
@@ -127,7 +127,6 @@ function MainPage() {
 
     const getRecentReviews = async () => {
       const response = await axios.get("/api/getLatestReviewPerAnime");
-      console.log(response.data.data);
       setRecentReviews(response.data.data.slice(0, 9));
     };
 
@@ -138,33 +137,33 @@ function MainPage() {
   }, []);
 
   return (
-    <Layout className="mainpage-container">
-      <Header className="mainpage-header">
-        <Space size={5} className="mainpage-navbar">
+    <Layout className={styles["mainpage-container"]}>
+      <Header className={styles["mainpage-header"]}>
+        <Space size={5} className={styles["mainpage-navbar"]}>
           <Dropdown menu={{ items: animeCate }}>
-            <div className="mainpage-navbar-item">Anime</div>
+            <div className={styles["mainpage-navbar-item"]}>Anime</div>
           </Dropdown>
           <Dropdown menu={{ items }}>
-            <div className="mainpage-navbar-item">Manga</div>
+            <div className={styles["mainpage-navbar-item"]}>Manga</div>
           </Dropdown>
           <Dropdown menu={{ items }}>
-            <div className="mainpage-navbar-item">Community</div>
+            <div className={styles["mainpage-navbar-item"]}>Community</div>
           </Dropdown>
           <Dropdown menu={{ items }}>
-            <div className="mainpage-navbar-item">Industry</div>
+            <div className={styles["mainpage-navbar-item"]}>Industry</div>
           </Dropdown>
           <Dropdown menu={{ items }}>
-            <div className="mainpage-navbar-item">Watch</div>
+            <div className={styles["mainpage-navbar-item"]}>Watch</div>
           </Dropdown>
           <Dropdown menu={{ items }}>
-            <div className="mainpage-navbar-item">Read</div>
+            <div className={styles["mainpage-navbar-item"]}>Read</div>
           </Dropdown>
           <Dropdown menu={{ items }}>
-            <div className="mainpage-navbar-item">Help</div>
+            <div className={styles["mainpage-navbar-item"]}>Help</div>
           </Dropdown>
         </Space>
 
-        <div className="mainpage-search-bar">
+        <div className={styles["mainpage-search-bar"]}>
           <Select
             size="small"
             defaultValue="anime"
@@ -174,72 +173,74 @@ function MainPage() {
         </div>
       </Header>
 
-      <Content className="mainpage-content">
-        <div className="welcome-message">Welcome to MyAnimeList.net!</div>
+      <Content className={styles["mainpage-content"]}>
+        <div className={styles["welcome-message"]}>
+          Welcome to MyAnimeList.net!
+        </div>
 
-        <div className="mainpage-content-container">
-          <div className="mainpage-content-space">
-            <div className="mainpage-content-item">
-              <div className="mainpage-content-label">
+        <div className={styles["mainpage-content-container"]}>
+          <div className={styles["mainpage-content-space"]}>
+            <div className={styles["mainpage-content-item"]}>
+              <div className={styles["mainpage-content-label"]}>
                 MALxJapan -More than just anime-
               </div>
 
-              <Space className="mainpage-content-list">
-                <div className="list-item">
+              <Space className={styles["mainpage-content-list"]}>
+                <div className={styles["list-item"]}>
                   <img
                     width={240}
                     src="https://cdn.myanimelist.net/resources/mxj_panel/2024/20241213014521_20241121005050_354x220@2x.png"
                   />
-                  <a className="list-item-description">
+                  <a className={styles["list-item-description"]}>
                     Watch "ConBiz!" ー a new Japanese business entertainment
                     program
                   </a>
                 </div>
 
-                <div className="list-item">
+                <div className={styles["list-item"]}>
                   <img
                     width={240}
                     src="https://cdn.myanimelist.net/resources/mxj_panel/2025/20250329041251_kup-354x220@2x.png"
                   />
-                  <a className="list-item-description">
+                  <a className={styles["list-item-description"]}>
                     Award-winning sommelier drama, sweaty romances and sci-fi
                     classics—here are Kodansha's top picks 📚
                   </a>
                 </div>
 
-                <div className="list-item">
+                <div className={styles["list-item"]}>
                   <img
                     width={240}
                     src="https://cdn.myanimelist.net/resources/mxj_panel/2025/20250410005810_354x220@2x(2).png"
                   />
-                  <a className="list-item-description">
+                  <a className={styles["list-item-description"]}>
                     Your guide to 2025's Must-Read Manga is here 📖
                   </a>
                 </div>
               </Space>
             </div>
 
-            <div className="mainpage-content-item">
+            <div className={styles["mainpage-content-item"]}>
               <ScrollableRow
                 title="This Season Animes"
                 list={newAnimes}
               ></ScrollableRow>
             </div>
 
-            <div className="mainpage-content-item">
+            <div className={styles["mainpage-content-item"]}>
               <ScrollableRow
                 title="Upcoming Animes"
                 list={upcomingAnimes}
               ></ScrollableRow>
             </div>
 
-            <div className="mainpage-content-item">
+            <div className={styles["mainpage-content-item"]}>
               <ReviewWidget reviews={recentReviews}></ReviewWidget>
             </div>
           </div>
 
-          <div className="mainpage-side-content">
-            <div className="mainpage-side-content-item">
+          <div className={styles["mainpage-side-content"]}>
+            <div className={styles["mainpage-side-content-item"]}>
               <VerticalList title="Top Airing Animes" list={topAiringAnimes} />
             </div>
           </div>

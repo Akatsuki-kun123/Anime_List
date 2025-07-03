@@ -1,0 +1,89 @@
+.anime-list-container {
+  align-items: center;
+
+  background-color: black;
+}
+
+.anime-list-header {
+  width: 900pt;
+  height: 25pt;
+  line-height: 25pt;
+
+  display: flex;
+  padding: 0 10pt;
+  align-items: center;
+
+  background-color: rgb(80, 112, 255);
+}
+
+.anime-list-navbar {
+  color: white;
+}
+.anime-list-navbar-item {
+  padding: 0 10pt;
+
+  font-size: 10pt;
+  font-weight: bold;
+}
+.anime-list-navbar-item:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+.anime-list-search-bar {
+  width: 40%;
+  height: 100%;
+
+  gap: 5pt;
+  display: flex;
+  margin-left: auto;
+  padding: 0pt 10pt;
+  align-items: center;
+
+  background-color: rgb(80, 112, 255);
+}
+
+.anime-list-container {
+  width: 900pt;
+
+  display: flex;
+  flex-direction: column;
+  border-left: 1.25px solid rgb(39, 39, 39);
+  border-right: 1.25px solid rgb(39, 39, 39);
+  border-bottom: 1.25px solid rgb(88, 88, 88);
+}
+
+.anime-list-content {
+  width: 96%;
+  height: calc(100% - 25pt);
+
+  display: flex;
+  flex-direction: column;
+  border-left: 1.25px solid rgb(39, 39, 39);
+  border-right: 1.25px solid rgb(39, 39, 39);
+  border-bottom: 1.25px solid rgb(88, 88, 88);
+}
+
+.welcome-message {
+  width: 100%;
+  height: 25pt;
+  line-height: 25pt;
+
+  margin-bottom: 10pt;
+  padding-left: 10pt;
+  justify-items: center;
+  border-bottom: 1.25px solid rgb(88, 88, 88);
+
+  font-size: 15pt;
+  font-weight: bold;
+
+  color: white;
+  background-color: rgb(34, 34, 34);
+}
+
+.pagination-btn {
+  gap: 10px;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+}

@@ -4,6 +4,21 @@
   align-items: center;
 }
 
+.auth-buttons-fixed {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+
+  gap: 20px;
+  padding: 10px;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .auth-btn {
   border-radius: 4px;
 

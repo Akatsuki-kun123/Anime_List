@@ -12,7 +12,31 @@ html {
   background-color: rgb(17, 17, 17);
 }
 
+.footer {
+  background-color: rgb(0, 0, 0);
+}
+
+.auth-button {
+  right: 15px;
+  width: fit-content;
+  height: fit-content;
+
+  position: absolute;
+  display: inline-block;
+}
+
 .content {
   display: flex;
   margin-top: 30pt;
+}
+
+.ant-dropdown-menu {
+  background-color: rgb(80, 80, 80) !important;
+}
+.ant-dropdown-menu-item {
+  color: white !important;
+}
+.ant-dropdown-menu-item:hover {
+  color: black !important;
+  background-color: rgb(255, 255, 255) !important;
 }
