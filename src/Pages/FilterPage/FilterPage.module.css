@@ -1,0 +1,30 @@
+.search-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.welcome-message {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.anime-list-container {
+  background-color: black;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.anime-list-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

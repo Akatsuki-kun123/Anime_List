@@ -1,0 +1,40 @@
+.search-results-container {
+  padding: 20px;
+}
+
+.search-heading {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination-btn {
+  padding: 6px 12px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-btn:disabled {
+  background-color: #333;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: #fff;
+}

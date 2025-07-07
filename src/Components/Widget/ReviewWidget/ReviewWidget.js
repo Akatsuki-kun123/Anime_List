@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 import "./ReviewWidget.css";
 
@@ -31,9 +31,10 @@ function ReviewWidget({ reviews }) {
                 <span className="read-more">(read more)</span>
               </div>
 
-              <div className="review-meta">
+              <Link to={`/profile/${review.user.id}`} className="review-meta">
                 by <span className="review-user">{review.user.username}</span>
-              </div>
+                <span className="review-time">{review.created_at}</span>
+              </Link>
             </div>
           </div>
         ))

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import "./ScrollableRow.css";
 
@@ -27,7 +28,11 @@ function ScrollableRow({ title, list }) {
 
   return (
     <div className="scroll-container-wrapper">
-      <div className="scroll-container-label">{title}</div>
+      {title == "" ? (
+        <></>
+      ) : (
+        <div className="scroll-container-label">{title}</div>
+      )}
 
       {!atStart && (
         <button className="scroll-btn left" onClick={() => scroll("left")}>
@@ -37,16 +42,18 @@ function ScrollableRow({ title, list }) {
 
       <div className="scroll-container" ref={scrollRef}>
         {list && list.length > 0 ? (
-          list.map((elem) => (
-            <div key={elem.id} className="item-card">
-              <div className="image-wrapper">
-                <img src={elem.image} alt={elem.en_name} />
-                <div className="image-overlay">
-                  <div className="item-title">{elem.jp_name}</div>
-                  <div className="item-content">Ep {elem.episodes}</div>
+          list.map((anime) => (
+            <Link to={`/anime/${anime.id}`}>
+              <div key={anime.id} className="item-card">
+                <div className="image-wrapper">
+                  <img src={anime.image} alt={anime.en_name} />
+                  <div className="image-overlay">
+                    <div className="item-title">{anime.jp_name}</div>
+                    <div className="item-content">Ep {anime.episodes}</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div style={{ color: "white" }}>No data available.</div>

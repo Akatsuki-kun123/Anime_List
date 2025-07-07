@@ -1,109 +1,27 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 
-import { Dropdown, Layout, Space, Input, Select } from "antd";
+import { Space, Layout } from "antd";
+
+import axios from "axios";
+
+import styles from "./MainPage.module.css";
 
 import VerticalList from "../../Components/VerticalList/VerticalList.js";
 import ScrollableRow from "../../Components/ScrollableRow/ScrollableRow.js";
 import ReviewWidget from "../../Components/Widget/ReviewWidget/ReviewWidget.js";
 
-import styles from "./MainPage.module.css";
-import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext";
 
-const { Header, Content } = Layout;
-
-const items = [
-  {
-    key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: "2",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item (disabled)
-      </a>
-    ),
-  },
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item (disabled)
-      </a>
-    ),
-  },
-  {
-    key: "4",
-    danger: true,
-    label: "a danger item",
-  },
-];
-
-const animeCate = [
-  {
-    key: "1",
-    label: <Link href="/anime-search">Anime Search</Link>,
-  },
-  {
-    key: "2",
-    label: <Link to="/anime_list">Top Anime</Link>,
-  },
-  {
-    key: "3",
-    label: <Link>Seasonal Anime</Link>,
-  },
-  {
-    key: "4",
-    label: <Link>Videos</Link>,
-  },
-  {
-    key: "5",
-    label: <Link>Reviews</Link>,
-  },
-  {
-    key: "6",
-    label: <Link>Recommendations</Link>,
-  },
-  {
-    key: "7",
-    label: <Link>2025 Challenge</Link>,
-  },
-  {
-    key: "8",
-    label: <Link>Fantasy Anime League</Link>,
-  },
-];
-
-const filterOptions = [
-  { value: "all", label: "All" },
-  { value: "anime", label: "Anime" },
-  { value: "manga", label: "Manga" },
-  { value: "characters", label: "Characters" },
-  { value: "people", label: "People" },
-];
+const { Content } = Layout;
 
 function MainPage() {
   const [newAnimes, setNewAnimes] = useState(null);
   const [recentReviews, setRecentReviews] = useState(null);
   const [upcomingAnimes, setUpcomingAnimes] = useState(null);
   const [topAiringAnimes, setTopAiringAnimes] = useState(null);
+  const [recommendations, setRecommendations] = useState(null);
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const getNewAnimes = async () => {
@@ -127,52 +45,27 @@ function MainPage() {
 
     const getRecentReviews = async () => {
       const response = await axios.get("/api/getLatestReviewPerAnime");
-      setRecentReviews(response.data.data.slice(0, 9));
+      setRecentReviews(response.data.data.slice(0, 5));
     };
 
+    const getRecommendations = async () => {
+      const response = await axios.post("/api/recommendations", {
+        userId: user.id,
+      });
+      setRecommendations(response.data.data.results);
+    };
+
+    if (user) {
+      getRecommendations();
+    }
     getNewAnimes();
     getRecentReviews();
     getUpcomingAnimes();
     getTopAiringAnimes();
-  }, []);
+  }, [user]);
 
   return (
     <Layout className={styles["mainpage-container"]}>
-      <Header className={styles["mainpage-header"]}>
-        <Space size={5} className={styles["mainpage-navbar"]}>
-          <Dropdown menu={{ items: animeCate }}>
-            <div className={styles["mainpage-navbar-item"]}>Anime</div>
-          </Dropdown>
-          <Dropdown menu={{ items }}>
-            <div className={styles["mainpage-navbar-item"]}>Manga</div>
-          </Dropdown>
-          <Dropdown menu={{ items }}>
-            <div className={styles["mainpage-navbar-item"]}>Community</div>
-          </Dropdown>
-          <Dropdown menu={{ items }}>
-            <div className={styles["mainpage-navbar-item"]}>Industry</div>
-          </Dropdown>
-          <Dropdown menu={{ items }}>
-            <div className={styles["mainpage-navbar-item"]}>Watch</div>
-          </Dropdown>
-          <Dropdown menu={{ items }}>
-            <div className={styles["mainpage-navbar-item"]}>Read</div>
-          </Dropdown>
-          <Dropdown menu={{ items }}>
-            <div className={styles["mainpage-navbar-item"]}>Help</div>
-          </Dropdown>
-        </Space>
-
-        <div className={styles["mainpage-search-bar"]}>
-          <Select
-            size="small"
-            defaultValue="anime"
-            options={filterOptions}
-          ></Select>
-          <Input.Search size="small" placeholder="Filled" variant="filled" />
-        </div>
-      </Header>
-
       <Content className={styles["mainpage-content"]}>
         <div className={styles["welcome-message"]}>
           Welcome to MyAnimeList.net!
@@ -233,6 +126,17 @@ function MainPage() {
                 list={upcomingAnimes}
               ></ScrollableRow>
             </div>
+
+            {recommendations ? (
+              <div className={styles["mainpage-content-item"]}>
+                <ScrollableRow
+                  title="Recommendations"
+                  list={recommendations}
+                ></ScrollableRow>
+              </div>
+            ) : (
+              <></>
+            )}
 
             <div className={styles["mainpage-content-item"]}>
               <ReviewWidget reviews={recentReviews}></ReviewWidget>

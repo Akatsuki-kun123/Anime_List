@@ -1,0 +1,70 @@
+.auth-button {
+  right: 15px;
+  width: fit-content;
+  height: fit-content;
+
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  display: inline-block;
+}
+
+.user-container {
+  right: 15px;
+  width: fit-content;
+  height: fit-content;
+
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  display: inline-block;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background-color: #333;
+}

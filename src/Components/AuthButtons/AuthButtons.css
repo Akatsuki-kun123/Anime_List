@@ -16,7 +16,7 @@
   position: fixed;
   justify-content: center;
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgb(32, 32, 32);
 }
 
 .auth-btn {

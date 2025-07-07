@@ -1,0 +1,80 @@
+html {
+  background-color: black;
+}
+
+.container {
+  background-color: rgb(0, 0, 0);
+}
+
+.header {
+  color: white;
+  text-align: center;
+  background-color: rgb(32, 32, 32);
+}
+
+.content {
+  display: flex;
+  margin-top: 30pt;
+}
+
+.content-container {
+  width: 900pt;
+
+  display: flex;
+  margin-bottom: 30pt;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
+  border-left: 1.25px solid rgb(39, 39, 39);
+  border-right: 1.25px solid rgb(39, 39, 39);
+  border-bottom: 1.25px solid rgb(39, 39, 39);
+}
+
+.content-header {
+  width: 900pt;
+  height: 25pt;
+  line-height: 25pt;
+
+  display: flex;
+  padding: 0 10pt;
+  align-items: center;
+
+  background-color: rgb(80, 112, 255);
+}
+
+.content-navbar {
+  color: white;
+}
+.content-navbar-item {
+  padding: 0 10pt;
+
+  font-size: 10pt;
+  font-weight: bold;
+}
+.content-navbar-item:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+.content-search-bar {
+  width: 40%;
+  height: 100%;
+
+  gap: 5pt;
+  display: flex;
+  margin-left: auto;
+  padding: 0pt 10pt;
+  align-items: center;
+
+  background-color: rgb(80, 112, 255);
+}
+
+.ant-dropdown-menu {
+  background-color: rgb(80, 80, 80) !important;
+}
+.ant-dropdown-menu-item {
+  color: white !important;
+}
+.ant-dropdown-menu-item:hover {
+  color: black !important;
+  background-color: rgb(255, 255, 255) !important;
+}

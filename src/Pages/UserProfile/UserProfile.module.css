@@ -1,0 +1,140 @@
+.profile-container {
+  display: flex;
+  padding: 20px;
+  margin: 20px 0;
+  color: #fff;
+  background-color: #1a1a1a;
+}
+
+.sidebar {
+  width: 220px;
+  background: #222;
+  padding: 15px;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.sidebar-buttons button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  background: #2d2d2d;
+  color: #fff;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.sidebar-buttons button:hover {
+  background: #3d3d3d;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links li {
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.sidebar-links li:hover {
+  color: #ccc;
+}
+
+.main-content {
+  flex: 1;
+  background: #2b2b2b;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.stats-section {
+  background: #333;
+  padding: 2px 20px;
+  border-radius: 6px;
+}
+
+.animes-container {
+  display: flex;
+  gap: 20px;
+}
+
+.animes-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.anime-item {
+  background: #3a3a3a;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+.anime-thumb {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+}
+
+.anime-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.text-row {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.anime-link {
+  color: white;
+  text-decoration: none;
+}
+
+.anime-link:hover {
+  color: rgb(112, 138, 255);
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+}
+
+.progress-bar-container {
+  flex: 1;
+  height: 8px;
+  background-color: #555;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: rgb(80, 112, 255);
+  transition: width 0.3s ease;
+}
+
+.favorites {
+  width: 700px;
+}

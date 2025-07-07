@@ -1,5 +1,6 @@
 .scroll-container-wrapper {
   width: 100%;
+  max-width: 770px;
   position: relative;
 }
 .scroll-container-label {

@@ -4,44 +4,6 @@
   background-color: black;
 }
 
-.mainpage-header {
-  width: 900pt;
-  height: 25pt;
-  line-height: 25pt;
-
-  display: flex;
-  padding: 0 10pt;
-  align-items: center;
-
-  background-color: rgb(80, 112, 255);
-}
-
-.mainpage-navbar {
-  color: white;
-}
-.mainpage-navbar-item {
-  padding: 0 10pt;
-
-  font-size: 10pt;
-  font-weight: bold;
-}
-.mainpage-navbar-item:hover {
-  background-color: rgb(80, 80, 80);
-}
-
-.mainpage-search-bar {
-  width: 40%;
-  height: 100%;
-
-  gap: 5pt;
-  display: flex;
-  margin-left: auto;
-  padding: 0pt 10pt;
-  align-items: center;
-
-  background-color: rgb(80, 112, 255);
-}
-
 .mainpage-content {
   width: 900pt;
   height: calc(100% - 25pt);

@@ -1,0 +1,157 @@
+.title {
+  width: 100%;
+  height: 25pt;
+  line-height: 25pt;
+
+  margin-bottom: 10pt;
+  padding-left: 10pt;
+  justify-items: center;
+  border-bottom: 1.25px solid rgb(88, 88, 88);
+
+  font-size: 15pt;
+  font-weight: bold;
+
+  color: white;
+  background-color: rgb(34, 34, 34);
+}
+
+.reviewCard {
+  display: flex;
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  gap: 20px;
+}
+
+.col1,
+.col2,
+.col3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.col1 {
+  width: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.col2 {
+  flex: 1;
+}
+
+.col3 {
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+.date {
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+}
+
+.content {
+  color: #ddd;
+  margin-bottom: 10px;
+}
+
+.readMore {
+  color: #4ea1ff;
+  font-size: 14px;
+}
+
+.score {
+  margin-top: auto;
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.animeTitle {
+  color: #4b7bff;
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.animeImage {
+  width: 150px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.tag {
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.readMoreButton {
+  width: fit-content;
+  background: none;
+  border: none;
+  color: #1890ff;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.readMoreButton:hover {
+  text-decoration: underline;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pageButton {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.pageButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: #40a9ff;
+}
+
+.pageInfo {
+  font-size: 14px;
+  color: #ffffff;
+}

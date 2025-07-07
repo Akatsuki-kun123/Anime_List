@@ -1,0 +1,123 @@
+.register-container {
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #1f1f2e;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.subtext {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.social-buttons button {
+  width: 48%;
+  margin: 5px 1%;
+  padding: 10px;
+  font-weight: bold;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.google-btn {
+  border-color: #db4437;
+}
+.apple-btn {
+  border-color: #fff;
+}
+.facebook-btn {
+  border-color: #3b5998;
+}
+.twitter-btn {
+  border-color: #1da1f2;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.divider span {
+  flex: 1;
+  height: 1px;
+  background: #444;
+}
+
+.divider p {
+  margin: 0 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.hint {
+  font-size: 12px;
+  color: #aaa;
+  margin: 5px 0;
+}
+
+.password-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.show-label {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submit-btn {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #3578e5;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.terms-text {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.terms-text span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-link {
+  margin-top: 15px;
+}
+
+.login-btn {
+  background: none;
+  border: none;
+  color: #4c9aff;
+  cursor: pointer;
+}
